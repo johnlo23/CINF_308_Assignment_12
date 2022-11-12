@@ -1,5 +1,11 @@
+# CINF 308 - Fall 2022
+# John Logiudice
+# Assignment 12
+# Solve a business problem
+
 from datetime import datetime
 import pandas as pd
+import os
 
 INPUT_FILE = "addresses.txt"
 
@@ -59,7 +65,7 @@ def datetime_name():
 
 
 def get_filename(f_prompt, f_default):
-    print(f"{f_prompt} (blank for {f_default}): ", end='')
+    print(f"{f_prompt} (blank for '{f_default}'): ", end='')
     f_in = input()
     if f_in == '':
         return f_default
@@ -148,6 +154,8 @@ def main():
 
     # Get output filename
     outfile_name = get_filename("Enter the file name to export", datetime_name())
+    # Get output path from os library
+    full_path = "\\".join((os.path.dirname(os.path.abspath(__file__)), outfile_name))
 
     # Output the data frame to a csv file - Assign a heading to the index column
     df.to_csv(outfile_name, index_label='line_no')
@@ -155,10 +163,12 @@ def main():
     print()
     print("Conversion complete")
     print("- "*9)
+    print(f'Output file: "{full_path}"')
     print(f"{df.shape[0]} Addresses have been converted.")
     print(f"{dup_len} duplicates have been removed.")
     print()
     input("Press <enter> to quit")
+
 
 # Call main function
 if __name__ == "__main__":
