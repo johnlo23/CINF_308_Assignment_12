@@ -160,6 +160,7 @@ def main():
     # Output the data frame to a csv file - Assign a heading to the index column
     df.to_csv(outfile_name, index_label='line_no')
 
+    # Display conclusion summary
     print()
     print("Conversion complete")
     print("- "*9)
